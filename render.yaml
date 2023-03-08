@@ -12,21 +12,5 @@ services:
         fromDatabase:
           name: postgres
           property: connectionString
-      # pick the region closest to your database
-      # For example, us-west-2 for the Oregon region
-      - key: AWS_REGION
-        sync: false 
-      # A globally unique name for your bucket
-      # For example, <your-username>-<database name>-render-postgres-backups
-      - key: S3_BUCKET_NAME
-        sync: false
-      # Looks like "AKIAXXXXXXXXXXXXXXXX"
-      - key: AWS_ACCESS_KEY_ID
-        sync: false
-      - key: AWS_SECRET_ACCESS_KEY
-        sync: false
-      # Postgres version of your Postgres instance 
-      # For example, 14
-      - key: POSTGRES_VERSION
-        sync: false
+      - fromGroup: Production
 
