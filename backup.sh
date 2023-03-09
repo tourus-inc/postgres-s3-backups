@@ -46,7 +46,7 @@ ensure_bucket_exists() {
 }
 
 pg_dump_database() {
-    pg_dump  --no-owner --no-privileges --clean --if-exists --quote-all-identifiers "$DATABASE_URL"
+    pg_dump  -Fc --no-owner --no-privileges --clean --if-exists --quote-all-identifiers "$DATABASE_URL"
 }
 
 upload_to_bucket() {
@@ -59,7 +59,7 @@ upload_to_bucket() {
 main() {
     ensure_bucket_exists
     echo "Taking backup and uploading it to S3..."
-    pg_dump_database | gzip | upload_to_bucket
+    pg_dump_database | upload_to_bucket
     echo "Done."
 }
 
